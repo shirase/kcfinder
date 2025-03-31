@@ -20,6 +20,7 @@
   *        array. It's recommended to use constants instead.
   */
 
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
 
 // PHP VERSION CHECK
 if (!preg_match('/^(\d+\.\d+)/', PHP_VERSION, $ver) || ($ver[1] < 5.3))
@@ -87,6 +88,15 @@ if (!function_exists("json_encode")) {
             str_replace('"', "\\\"",
             str_replace("\\", "\\\\",
         $data)))))) . '"';
+    }
+}
+
+if (!function_exists("each")) {
+    function each($array)
+    {
+        foreach ($array as $key => $value) {
+            return [$key, $value];
+        }
     }
 }
 
